@@ -49,14 +49,21 @@ def genreCollect(link, foundAnime):
 
     # collect anime from each page
     for i in range(1,n_pages+1):
-
-        soup = BeautifulSoup(urllib.request.urlopen('https://myanimelist.net'+link+'?page='+str(i)).read(),'lxml')
+        
+        pg = 'https://myanimelist.net'+link+'?page='+str(i)
+        print(pg)
+        soup = BeautifulSoup(urllib.request.urlopen(pg).read(),'lxml')
+        
 
         anime = soup.findAll('div', class_ = 'seasonal-anime js-seasonal-anime')
         for an in anime:
-
+            
+            # get main link
+            anime_link = an.div.div.find('a',class_ = 'link-title').get('href')
+            
             # title of anime
-            title = an.div.div.find('a',class_ = 'link-title').get('href').split("/")[-1]
+            title = anime_link.split("/")[-1]
+            print(title)
 
             # don't collect any data if we've already taken it before
             if title in foundAnime:
@@ -73,10 +80,44 @@ def genreCollect(link, foundAnime):
             an_genres = ';'.join(an_genres)
 
             # get synopsis
-            synopsis = an.find('span', class_ = 'preline').getText()
+            synopsis = an.find('span', class_ = 'preline').getText().strip()
+            
+            
+            try: 
+                moreSoup = BeautifulSoup(urllib.request.urlopen(anime_link.encode('utf-8').decode('ascii', 'ignore')).read(),'lxml')
+            except:
+                print(anime_link)
+                continue
+            
+            sideBar = moreSoup.find('div',class_ = 'js-scrollfix-bottom')
+            
+            info = {'Studios:': '', 'Rating:': ''}
+            
+            # side bar had no classes so have to go through the divs
+            for div in sideBar.findAll('div'):
+                
+                try:
+                    
+                    span = div.span.getText()
+                        
+                    if span == 'Studios:':
+                        
+                        info[span] = div.a.getText()
+                        
+                    elif span == 'Rating:':
+                        
+                        info[span] = div.getText().strip()[10:]
+                        break
+                        
+                except:
+                    
+                    continue
+            
+            
+            
 
             # final output string
-            final_output = an_genres + "\n" + synopsis
+            final_output = an_genres + '\n' + title + '\nStudios: ' + info['Studios:'] + '\nRating: ' + info['Rating:'] + '\nSynopsis: ' + synopsis  
 
             # write to file
             file = open("./" + genre + "/" + title + '.txt','w', encoding="utf-8")
