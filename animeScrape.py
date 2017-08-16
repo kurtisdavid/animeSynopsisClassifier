@@ -2,6 +2,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 import os
 import sys
+import glob
 
 def startScrape():
 
@@ -22,6 +23,10 @@ def startScrape():
 
     # hashtable to keep track of which anime already saved
     foundAnime = {}
+    
+    current = glob.glob('../animeScrape/*/*.txt')
+    for x in current:
+        foundAnime[x.split('\\')[-1][:-4]] = 1
     # start scraping!
     for link in genre_links:
 
@@ -32,13 +37,11 @@ def startScrape():
 def genreCollect(link, foundAnime):
 
     genre = link.split('/')[-1]
-    print(genre)
 
     soup = BeautifulSoup(urllib.request.urlopen('https://myanimelist.net'+link).read(),'lxml')
-
     # setup directory
-    directory = './' + genre
-    if not os.path.exists('./' + genre):
+    directory = '../animeScrape/' + genre
+    if not os.path.exists(directory):
         os.makedirs(directory)
 
     # try find number of pages of anime to scrape
@@ -55,7 +58,8 @@ def genreCollect(link, foundAnime):
         soup = BeautifulSoup(urllib.request.urlopen(pg).read(),'lxml')
         
 
-        anime = soup.findAll('div', class_ = 'seasonal-anime js-seasonal-anime')
+        anime = soup.findAll('div', class_ =lambda value: value and value.startswith('seasonal-anime js-seasonal-anime'))
+
         for an in anime:
             
             # get main link
@@ -63,11 +67,10 @@ def genreCollect(link, foundAnime):
             
             # title of anime
             title = anime_link.split("/")[-1]
-            print(title)
 
             # don't collect any data if we've already taken it before
             if title in foundAnime:
-                continue
+            	continue
             
             # collect all of the genres
             an_genres = []
@@ -81,7 +84,6 @@ def genreCollect(link, foundAnime):
 
             # get synopsis
             synopsis = an.find('span', class_ = 'preline').getText().strip()
-            
             
             try: 
                 moreSoup = BeautifulSoup(urllib.request.urlopen(anime_link.encode('utf-8').decode('ascii', 'ignore')).read(),'lxml')
@@ -120,10 +122,12 @@ def genreCollect(link, foundAnime):
             final_output = an_genres + '\n' + title + '\nStudios: ' + info['Studios:'] + '\nRating: ' + info['Rating:'] + '\nSynopsis: ' + synopsis  
 
             # write to file
-            file = open("./" + genre + "/" + title + '.txt','w', encoding="utf-8")
-            file.write(final_output)
-            file.close()
-
+            try:
+                file = open(directory + '/' + title + '.txt','w', encoding="utf-8")
+                file.write(final_output)
+                file.close()
+            except:
+            	continue
             # add to hash table
             foundAnime[title] = 1
 
