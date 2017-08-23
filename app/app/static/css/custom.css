@@ -1,0 +1,310 @@
+.genre {
+  font-weight: 700;
+  border: none;
+  border-radius: 300px;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+.genre:hover{
+    cursor: pointer;
+}
+
+.Action {
+  background-color: #e13612;
+}
+.Action.genre:hover{
+    background-color: #eb3812;
+}
+
+.Adventure {
+  background-color: #ac4820;
+}
+.Adventure.genre:hover{
+    background-color: #973f1c;
+}
+
+.Cars {
+  background-color: #86888A;
+}
+.Cars.genre:hover{
+    background-color:#646668;
+}
+
+.Comedy {
+  background-color: #1eae22;
+}
+.Comedy.genre:hover{
+    background-color:#1a991e;
+}
+
+.Dementia {
+  background-color: #666699;
+}
+.Dementia.genre:hover{
+    background-color:#5c5c8a;
+}
+
+.Demons {
+  background-color: #00134d;
+}
+.Demons.genre:hover{
+    background-color:#000d33;
+}
+
+.Drama {
+  background-color: #8080ff;
+}
+.Drama.genre:hover{
+    background-color: #6666ff;
+}
+
+.Ecchi {
+  background-color: #ff0080;
+}
+.Ecchi.genre:hover{
+    background-color: #e60073;
+}
+
+.Fantasy {
+  background-color: #006600;
+}
+.Fantasy.genre:hover{
+    background-color: #004d00;
+}
+
+.Game {
+  background-color: #0077b3;
+}
+.Game.genre:hover{
+    background-color: #006699;
+}
+
+.Harem {
+  background-color: #b3003b;
+}
+.Harem.genre:hover{
+    background-color: #990033;
+}
+
+.Hentai {
+  background-color: #ff8080;
+}
+.Hentai.genre:hover{
+    background-color: #ff6666;
+}
+
+.Historical {
+  background-color: #3c7777;
+}
+.Historical.genre:hover{
+    background-color: #336666;
+}
+
+.Horror {
+  background-color: #b30000;
+}
+.Horror.genre:hover{
+    background-color: #990000;
+}
+
+.Josei {
+  background-color: #00cccc;
+}
+.Josei.genre:hover{
+    background-color: #00b3b3;
+}
+
+.Kids {
+  background-color: #ff7733;
+}
+.Kids.genre:hover{
+    background-color: #ff661a;
+}
+
+.Magic {
+  background-color: #5200cc;
+}
+.Magic.genre:hover{
+    background-color: #4700b3;
+}
+
+.Martial_Arts {
+  background-color: #7a7a52;
+}
+.Martial_Arts.genre:hover{
+    background-color: #6b6b47;
+}
+
+.Mecha {
+  background-color: #882b3d;
+}
+.Mecha.genre:hover{
+    background-color: #742535;
+}
+
+.Military {
+  background-color: #336600;
+}
+.Miltary.genre:hover{
+    background-color: #264d00;
+}
+
+.Music {
+  background-color: #b38f00;
+}
+.Music.genre:hover{
+    background-color: #997a00;
+}
+
+.Mystery {
+  background-color: #38004d;
+}
+.Mystery.genre:hover{
+    background-color: #250033;
+}
+
+.Parody {
+  background-color: #3da988;
+}
+.Parody.genre:hover{
+    background-color: #369679;
+}
+
+.Police {
+  background-color: #29293d;
+}
+.Police.genre:hover{
+    background-color: #29293d;
+}
+
+.Psychological {
+  background-color: #6b6b47;
+}
+.Psychological.genre:hover{
+    background-color: #5c5c3d;
+}
+
+.Romance {
+  background-color: #e60b0b;
+}
+.Romance.genre:hover{
+    background-color: #c30909;
+}
+
+.Samurai {
+  background-color: #804000;
+}
+.Samurai.genre:hover{
+    background-color: #663300;
+}
+
+.School {
+  background-color: #3399ff;
+}
+.School.genre:hover{
+    background-color: #1a8cff;
+}
+
+.Sci-Fi {
+  background-color: #804000;
+}
+.Sci-Fi.genre:hover{
+    background-color: #663300;
+}
+
+.Seinen {
+  background-color: #666666;
+}
+.Seinen.genre:hover{
+    background-color: #595959;
+}
+
+.Shoujo {
+  background-color: #ff6699;
+}
+.Shoujo.genre:hover{
+    background-color: #ff4d88;
+}
+
+.Shoujo_Ai {
+  background-color: #bf4080;
+}
+.Shoujo_Ai.genre:hover{
+    background-color: #993366;
+}
+
+.Shounen {
+  background-color: #0066cc;
+}
+.Shounen.genre:hover{
+    background-color: #0059b3;
+}
+
+.Shounen_Ai {
+  background-color: #b30059;
+}
+.Shounen_Ai.genre:hover{
+    background-color: #99004d;
+}
+
+.Slice_of_Life {
+  background-color: #ff9933;
+}
+.Slice_of_Life.genre:hover{
+    background-color: #ff8c1a;
+}
+
+.Space {
+  background-color: #28283e;
+}
+.Space.genre:hover{
+    background-color: #1e1e2f;
+}
+
+.Sports {
+  background-color: #5c8a8a;
+}
+.Sports.genre:hover{
+    background-color: #527a7a;
+}
+
+.Super_Power {
+  background-color: #0000b3;
+}
+.Super_Power.genre:hover{
+    background-color: #000099;
+}
+
+.Supernatural {
+  background-color: #333300;
+}
+.Supernatural.genre:hover{
+    background-color: #1a1a00;
+}
+
+.Thriller {
+  background-color: #661400;
+}
+.Thriller.genre:hover{
+    background-color: #4d0f00;
+}
+
+.Vampire {
+  background-color: #993366;
+}
+.Vampire.genre:hover{
+    background-color: #862d59;
+}
+
+.Yaoi {
+  background-color: #00b3b3;
+}
+.Yaoi.genre:hover{
+    background-color: #009999;
+}
+
+.Yuri {
+  background-color: #ff80ff;
+}
+.Yaoi.genre:hover{
+    background-color: #ff66ff;
+}

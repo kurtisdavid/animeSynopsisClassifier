@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="../static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/creative.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
+    <script>
+        function getColor(mean) {
+            var hue=((mean)*120).toString(10);
+            console.log(mean);
+            return ["hsl(",hue,",100%,50%)"].join("");
+        }
+        window.onload = function(e) {document.getElementById("conf").style.color = getColor({{mean}});}
+    </script>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="https://github.com/kurtisdavid/animeSynopsisClassifier">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="mailto:kurtis.david@live.com">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> 
+
+    <header class="masthead">
+      <div class="header-content">
+        <div class="header-content-inner">
+          <h1>{{ name }}</h1>
+          <hr>
+          {% for p in predictions %}
+            <div class = "btn btn-primary genre {{p.replace(' ','_')}}">{{p}}</div>
+          {% endfor %}
+          <div style = "padding: 10px"></div>
+          <!--<h4>{{ ' | '.join(predictions) }}</h4><br>-->
+          <div style = "margin:0px; width:100%; display: table">
+            <div style='display: table-row; text-align: center'>
+              <div style = "margin:0; width:30%; display: table-cell; height = auto; vertical-align: middle"><img style = "" src = "{{ img_link }}"/></div>
+
+              <div style = "margin:0; width:70%; height = auto; display: table-cell; vertical-align: middle; horizontal-align: middle">
+                <h4 id = "conf">{{ confidence + " Confidence"}}</h4>
+                <div class = "synopsis"><strong class = "label">Studio:</strong> {{synopsis.split("Studios: ")[-1].split("Rating")[0]}}</div><br>
+                <div class = "synopsis"><strong class = 'label'>Rating:</strong> {{synopsis.split("Rating: ")[-1].split("Synopsis")[0]}}</div><br>
+                <div class = "synopsis label"><strong>Synopsis:</strong></div>
+                <div class = "synopsis">{{ synopsis.split("Synopsis: ")[-1]}}</div>
+              </div>
+
+            </div>
+          </div>
+          <p></p>
+          <form action="/classify" method="post" name="login">
+
+                  <p>Please enter another MAL link: <br> <br>
+                  {{form.anime_link(size=50, class_="form_style")}}
+                  <br><br>
+                  <input class = "btn btn-primary btn-xl js-scroll-trigger" type="submit" value="Classify"></p>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    </body>
+   
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/popper/popper.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../static/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="../static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../static/js/jquery.highlight-5.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../static/js/creative.min.js"></script>
+    <script src="../static/js/top_words.js"></script>
+    <script>
+
+      $(".btn-primary.genre").click( function() {
+          $('.synopsis').removeHighlight();
+          findTopWords(event.target,{{ top_10|safe }});
+      });
+
+    </script>
+
+
+</html>
