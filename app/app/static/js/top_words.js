@@ -1,4 +1,19 @@
 
+last_class = null;
+highlighted = false;
+
+function reset(clicked, top_10) {
+  console.log(last_class);
+  $('.synopsis').removeHighlight();
+  if (last_class===$(clicked).attr('class') && highlighted==true) {
+    highlighted = false;
+  } else { 
+    findTopWords(event.target, top_10);
+    highlighted = true; 
+  }
+  last_class = $(clicked).attr('class');
+}
+
 function findTopWords(element, top_words) {
 
   var class_ = $(element).attr('class').split(' ').pop();

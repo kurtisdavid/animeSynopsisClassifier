@@ -1,6 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import sys
+import random
 
 def scrape(link):
 
@@ -91,3 +92,18 @@ def clean(synopsis):
       real = '\n'.join(real)
 
     return real, genres
+
+def generate():
+
+  general_link = "https://myanimelist.net/anime/season"
+  r = urllib.request.urlopen(general_link).read()
+  soup = BeautifulSoup(r,'lxml')
+
+  seasonal_anime = soup.findAll('div', class_ = 'seasonal-anime js-seasonal-anime');
+  chosen = random.choice(seasonal_anime)
+
+  link = chosen.div.div.p.a.get('href')
+
+  return link
+
+

@@ -1,11 +1,14 @@
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, url_for, make_response
 from app import app
 from .forms import LoginForm
-from .scrape import scrape, clean
+from .scrape import scrape, clean, generate
 from .vectorize import tokenize, get_vectorizer
 from .model import get_svm, get_genres, predict, get_ranks
 from sklearn.pipeline import Pipeline
 import json
+import urllib.request
+from bs4 import BeautifulSoup
+import random
 
 
 vectorizer = None
@@ -65,11 +68,10 @@ def classify():
         results = scrape(request.form['anime_link'])
 
         if results == None:
-
+            
             return render_template('index.html', 
                            title='Sign In',
                            form=form, error = "Please use a valid link.")
-
 
         title, (synopsis, true_genres), img = results[0], results[1], results[2] 
 
@@ -84,3 +86,18 @@ def classify():
 
     if form.validate_on_submit():
         return redirect('/classify', form.openid.data)
+
+@app.route('/generate', methods =['GET','POST'])
+
+def generate():
+
+  general_link = "https://myanimelist.net/anime/season"
+  r = urllib.request.urlopen(general_link).read()
+  soup = BeautifulSoup(r,'lxml')
+
+  seasonal_anime = soup.findAll('div', class_ = 'seasonal-anime js-seasonal-anime');
+  chosen = random.choice(seasonal_anime)
+
+  link = chosen.div.div.p.a.get('href')
+
+  return link

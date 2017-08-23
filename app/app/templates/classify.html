@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Anime Synopsis Classifier</title>
+    <link rel="icon" href="../static/img/icon.png">
 
     <!-- Bootstrap core CSS -->
     <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -83,12 +84,15 @@
             </div>
           </div>
           <p></p>
-          <form action="/classify" method="post" name="login">
+          <form action="/classify" method="post" name="login" id="form">
 
                   <p>Please enter another MAL link: <br> <br>
-                  {{form.anime_link(size=50, class_="form_style")}}
+                  {{form.anime_link(size=50, class_="form_style", id="anime")}}
                   <br><br>
                   <input class = "btn btn-primary btn-xl js-scroll-trigger" type="submit" value="Classify"></p>
+                  <hr>
+
+                  <input class="btn btn-primary btn-xl js-scroll-trigger" id="generate" value = "Generate!" onclick="gen_();" style="cursor: pointer;"></input>
           </form>
         </div>
       </div>
@@ -110,13 +114,13 @@
     <!-- Custom scripts for this template -->
     <script src="../static/js/creative.min.js"></script>
     <script src="../static/js/top_words.js"></script>
+    <script src="../static/js/gen.js"></script>
+
     <script>
-
+      
       $(".btn-primary.genre").click( function() {
-          $('.synopsis').removeHighlight();
-          findTopWords(event.target,{{ top_10|safe }});
+        reset(this,{{top_10|safe}});
       });
-
     </script>
 
 

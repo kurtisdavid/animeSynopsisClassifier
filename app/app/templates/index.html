@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>Anime Synopsis Classifier</title>
+    <link rel="icon" href="../static/img/icon.png">
 
     <!-- Bootstrap core CSS -->
     <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +24,8 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/creative.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+
 
   </head>
 
@@ -54,15 +57,20 @@
           <h1 id="homeHeading">Anime Synopsis Classifier</h1>
           <hr>
             
-          <form action="/classify" method="post" name="anime_link">
+          <form action="/classify" method="post" name="anime_link", id="form">
 
-                  <p>Please enter the myanimelist (MAL) link: <br> <br>
+                  <p>Please enter the MAL link: <br> <br>
                   {% if error != None:%}
                     <p style = 'color: red'>{{error}}</p>
                   {% endif %}
-                  {{ form.anime_link(size=50, class_="form_style") }}
+                  {{ form.anime_link(size=50, class_="form_style", id="anime") }}
                   <br><br>
                   <input class = "btn btn-primary btn-xl js-scroll-trigger" type="submit" value="Classify"></p>
+
+                  <hr>
+
+                  <p> Or generate an anime from this season: </p>
+                  <input class="btn btn-primary btn-xl js-scroll-trigger" id="generate" value = "Generate!" onclick="gen_();" style="cursor: pointer;"></input>
           </form>
         </div>
       </div>
@@ -81,6 +89,9 @@
 
     <!-- Custom scripts for this template -->
     <script src="../static/js/creative.min.js"></script>
+    <script src="../static/js/gen.js"></script>
+
+
 
   </body>
 

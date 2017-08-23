@@ -21,6 +21,7 @@ EDIT:
 Kurtis David
 
 */
+last_class = null;
 
 jQuery.fn.highlight = function(pat, class_) {
  function innerHighlight(node, pat) {
