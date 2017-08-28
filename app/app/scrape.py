@@ -11,30 +11,31 @@ def scrape(link):
       soup = BeautifulSoup(r,'lxml')
     except:
       return None
-
-    synopsis = soup.find('span', itemprop = 'description').getText().strip()
-
+    try:
+      synopsis = soup.find('span', itemprop = 'description').getText().strip()
+    except:
+      return 0
     sideBar = soup.find('div',class_ = 'js-scrollfix-bottom')
-            
+
     info = {'Studios:': '', 'Rating:': ''}
 
     title = soup.find('span', itemprop = 'name').getText().strip()
 
     # side bar had no classes so have to go through the divs
     for div in sideBar.findAll('div'):
-        
+
         try:
-            
+
             span = div.span.getText()
-            
-                
+
+
             if span == 'Studios:':
                 info[span] = div.a.getText()
-                
+
             elif span == 'Rating:':
                 info[span] = div.getText().strip()[10:]
                 break
-            
+
             elif span == 'Genres:':
                 genres = []
                 for l in div.findAll('a'):

@@ -3,28 +3,29 @@ import gzip
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
+import sys
 
 
 def get_svm():
 
     # load trained SVM
-    with gzip.open('../models/svc_p.zip', 'rb') as f:
+    with gzip.open('/home/kurtisdavid/animeSynopsisClassifier/models/svc_p.zip', 'rb') as f:
         clf = pickle.load(f)
 
     return clf
 
 def get_ranks():
 
-    with open('../models/ranking_dict.pkl', 'rb') as f:
-    
+    with open('/home/kurtisdavid/animeSynopsisClassifier/models/ranking_dict.pkl', 'rb') as f:
+
         ranking_dict = pickle.load(f)
 
     return ranking_dict
 
 def get_genres():
 
-    with open('../models/genres.pkl', 'rb') as f:
-    
+    with open('/home/kurtisdavid/animeSynopsisClassifier/models/genres.pkl', 'rb') as f:
+
         genres = pickle.load(f)
 
     return genres
