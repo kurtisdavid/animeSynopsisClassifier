@@ -14,7 +14,7 @@ The final result had an **F-score** of 0.81 over 43 labels.
 This final model used a **linear Support Vector Machine** after GridSearch and testing other models: (Logistic Regression, Naive Bayes, Random Forest).
 
 # 2. Flask Web Application
-To make my results interactive, I built a python web app using [Flask](http://flask.pocoo.org/). Click [here](https://kurtisdavid.pythonanywhere.com) to check it out! (Link coming soon)
+To make my results interactive, I built a python web app using [Flask](http://flask.pocoo.org/). Click [here](predict.moe) to check it out!
 
 Here are some screenshots:
 
